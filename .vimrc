@@ -173,22 +173,22 @@ nnoremap k gk
 nnoremap O :<C-u>call append(line('.'), '')<Cr>j
 
 "cancel highlight with Esc Esc
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
 "substitute Esc with ctrl-c
 noremap <C-c> <Esc>
 noremap! <C-c> <Esc>
-nmap <C-c><C-c> :nohlsearch<CR><Esc>
+nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
 
 "move to the beginning of the line with ctrl-h
-noremap <C-h> 0
+nnoremap <C-h> 0
 
 "move to the end of the line with ctrl-l
-noremap <C-l> $
+nnoremap <C-l> $
 
 "go to the previous/next tab page with ctrl-p/n
-noremap <C-p> :tabp<CR>
-noremap <C-n> :tabn<CR>
+nnoremap <C-p> :tabp<CR>
+nnoremap <C-n> :tabn<CR>
 
 "disable auto wrap and comment out
 autocmd FileType * set formatoptions=q
