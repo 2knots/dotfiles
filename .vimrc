@@ -190,6 +190,10 @@ nnoremap <C-l> $
 nnoremap <C-p> :tabp<CR>
 nnoremap <C-n> :tabn<CR>
 
+"move the cursor in insert mode
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+
 "disable auto wrap and comment out
 autocmd FileType * set formatoptions=q
 
