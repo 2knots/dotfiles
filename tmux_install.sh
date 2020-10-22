@@ -2,7 +2,8 @@
 
 set -e
 
-ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
+DOT_DIR=$(cd $(dirname $0); pwd)
+ln -s $DOT_DIR/.tmux.conf $HOME/.tmux.conf
 cat << "EOF" >> $HOME/.profile
 
 #auto-execution of tmux
