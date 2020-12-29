@@ -166,8 +166,8 @@ set ambiwidth=double
 set virtualedit=block
 
 "move by displayed line
-nnoremap j gj
-nnoremap k gk
+noremap j gj
+noremap k gk
 
 "insert a blank line with O
 nnoremap O :<C-u>call append(line('.'), '')<Cr>j
