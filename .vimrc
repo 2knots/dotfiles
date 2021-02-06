@@ -181,10 +181,10 @@ noremap! <C-c> <Esc>
 nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
 
 "move to the beginning of the line with ctrl-h
-nnoremap <C-h> 0
+noremap <C-h> 0
 
 "move to the end of the line with ctrl-l
-nnoremap <C-l> $
+noremap <C-l> $
 
 "go to the previous/next tab page with ctrl-p/n
 nnoremap <C-p> :tabp<CR>
