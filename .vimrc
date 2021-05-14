@@ -63,13 +63,6 @@ let fortran_free_source=1
 let fortran_do_enddo=1
 " }}}
 
-"setting for Python {{{
-if expand("%:e")=="py"
-"execute script with F5
-  nmap <F5> :!python %<CR>
-endif
-"}}}
-
 "highlight the screen line of the cursor
 set cursorline
 
@@ -113,11 +106,8 @@ set backspace=indent,eol,start
 set tabstop=4
 
 "number of spaces used for each step of (auto)indent
-if expand("%:e")=="py"
-  set shiftwidth=4
-else
-  set shiftwidth=2
-endif
+set shiftwidth=2
+autocmd FileType python setlocal shiftwidth=4
 
 "a <Tab> in an indent inserts 'shiftwidth' spaces
 set smarttab
@@ -165,20 +155,33 @@ set ambiwidth=double
 "Allow virtual editing in Visual block mode.
 set virtualedit=block
 
+"read tags file
+set tags=./tags;
+
+"follow smartcase and ignorecase options when searching tags
+set tagcase=followscs
+
+"disable auto wrap and comment out
+autocmd VimEnter * set formatoptions=q
+
+"execute script with F5
+autocmd BufEnter *.py nnoremap <F5> :!python %<CR>
+autocmd BufEnter *.sh,*.bash nnoremap <F5> :!./%<CR>
+
 "move by displayed line
 noremap j gj
 noremap k gk
 
 "insert a blank line with O
-nnoremap O :<C-u>call append(line('.'), '')<Cr>j
+nnoremap O :call append(line('.'), '')<CR>j
 
 "cancel highlight with Esc Esc
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <Esc><Esc> :nohlsearch<CR>
 
 "substitute Esc with ctrl-c
 noremap <C-c> <Esc>
 noremap! <C-c> <Esc>
-nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
+nnoremap <C-c><C-c> :nohlsearch<CR>
 
 "move to the beginning of the line with ctrl-h
 noremap <C-h> 0
@@ -194,6 +197,13 @@ nnoremap <C-n> :tabn<CR>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
-"disable auto wrap and comment out
-autocmd FileType * set formatoptions=q
+"open tag in new tab page
+nnoremap <C-]> :tab tjump <C-r><C-w><CR>
+
+"open tag in vertically split window
+nnoremap <Leader><C-]> :vs +tjump\ <C-r><C-w><CR>
+
+"show matchlist when there are several matching tags
+vnoremap <C-]> g<C-]>
+noremap <C-w><C-]> <C-w>g<C-]>
 
