@@ -164,7 +164,7 @@ set tagcase=followscs
 "disable auto wrap and comment out
 autocmd VimEnter * set formatoptions=q
 
-"execute script with F5
+"run script with F5
 autocmd BufEnter *.py nnoremap <F5> :!python %<CR>
 autocmd BufEnter *.sh,*.bash nnoremap <F5> :!./%<CR>
 
