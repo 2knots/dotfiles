@@ -6,6 +6,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'jacoborus/tender.vim'
+Plug 'vim-scripts/gtags.vim'
 
 call plug#end()
 "------------ vim-plug ------------------
@@ -206,4 +207,12 @@ nnoremap <Leader><C-]> :vs +tjump\ <C-r><C-w><CR>
 "show matchlist when there are several matching tags
 vnoremap <C-]> g<C-]>
 noremap <C-w><C-]> <C-w>g<C-]>
+
+"key mappings for gtags
+nnoremap <C-g><C-f> :Gtags -f %<CR>
+nnoremap <C-g><C-d> :tabe +Gtags\ <C-r><C-w><CR> %
+nnoremap <C-g><C-r> :tabe +Gtags\ -r\ <C-r><C-w><CR> %
+nnoremap <C-j> :cn<CR>
+nnoremap <C-k> :cp<CR>
+nnoremap <C-w><C-q> :cclose<CR>
 
