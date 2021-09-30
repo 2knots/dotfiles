@@ -214,5 +214,5 @@ nnoremap <C-g><C-d> :tabe +Gtags\ <C-r><C-w><CR> %
 nnoremap <C-g><C-r> :tabe +Gtags\ -r\ <C-r><C-w><CR> %
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
-nnoremap <C-w><C-q> :cclose<CR>
+nnoremap <C-g><C-g> :cclose<CR>
 
