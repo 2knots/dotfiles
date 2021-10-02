@@ -166,8 +166,7 @@ set tagcase=followscs
 autocmd VimEnter * set formatoptions=q
 
 "run script with F5
-autocmd BufEnter *.py nnoremap <F5> :!python %<CR>
-autocmd BufEnter *.sh,*.bash nnoremap <F5> :!./%<CR>
+autocmd BufEnter *.py,*.sh,*.bash nnoremap <F5> :!./%<CR>
 
 "move by displayed line
 noremap j gj
