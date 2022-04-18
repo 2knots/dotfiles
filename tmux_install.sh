@@ -3,7 +3,7 @@
 set -e
 
 DOT_DIR=$(cd $(dirname $0); pwd)
-ln -s $DOT_DIR/.tmux.conf $HOME/.tmux.conf
+ln -s $DOT_DIR/tmux.conf $HOME/.tmux.conf
 cat << "EOF" >> $HOME/.profile
 
 #auto-execution of tmux

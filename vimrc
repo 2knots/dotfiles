@@ -7,6 +7,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'jacoborus/tender.vim'
 Plug 'vim-scripts/gtags.vim'
+Plug 'lyuts/vim-rtags'
 
 call plug#end()
 "------------ vim-plug ------------------
@@ -166,7 +167,7 @@ set tagcase=followscs
 autocmd VimEnter * set formatoptions=q
 
 "run script with F5
-autocmd BufEnter *.py,*.sh,*.bash nnoremap <F5> :!./%<CR>
+nnoremap <F5> :!./%<CR>
 
 "move by displayed line
 noremap j gj
@@ -197,6 +198,11 @@ nnoremap <C-n> :tabn<CR>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
+"quickfix keybind
+nnoremap <C-j> :cn<CR>
+nnoremap <C-k> :cp<CR>
+nnoremap <C-g><C-g> :cclose<CR>
+
 "open tag in new tab page
 nnoremap <C-]> :tab tjump <C-r><C-w><CR>
 
@@ -211,7 +217,16 @@ noremap <C-w><C-]> <C-w>g<C-]>
 nnoremap <C-g><C-f> :Gtags -f %<CR>
 nnoremap <C-g><C-d> :tabe +Gtags\ <C-r><C-w><CR> %
 nnoremap <C-g><C-r> :tabe +Gtags\ -r\ <C-r><C-w><CR> %
-nnoremap <C-j> :cn<CR>
-nnoremap <C-k> :cp<CR>
-nnoremap <C-g><C-g> :cclose<CR>
 
+"vim-rtags setting
+let g:rtagsUseDefaultMappings = 0
+let g:rtagsUseLocationList = 0
+nnoremap <Leader>d :call rtags#JumpTo(g:NEW_TAB)<CR>
+nnoremap <Leader>r :call FindRefsNewTab()<CR>
+nnoremap <Leader>p :call rtags#JumpToParent()<CR>
+function! FindRefsNewTab()
+  let pos = getcurpos()
+  call remove(pos, 0)
+  tabe +call\ cursor(pos) %
+  call rtags#FindRefs()
+endfunction

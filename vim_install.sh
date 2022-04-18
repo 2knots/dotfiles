@@ -22,6 +22,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c PlugInstall -c qa
 rm $VIMRC
-ln -s $DOT_DIR/.vimrc $VIMRC
+ln -s $DOT_DIR/vimrc $VIMRC
 ln -s $DOT_DIR/lightline_custom.vim $HOME/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/lightline_custom.vim
 echo "vim setting completed!"
