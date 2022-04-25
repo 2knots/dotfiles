@@ -6,7 +6,7 @@ DOT_DIR=$(cd $(dirname $0); pwd)
 VIMRC=$HOME/.vimrc
 
 IFS=$'\n'
-list=(`cat $DOT_DIR/.vimrc`)
+list=(`cat $DOT_DIR/vimrc`)
 for i in $(seq 0 ${#list[@]}); do
   if [[ ${list[$i]} =~ [[:blank:]]*call[[:blank:]]+plug#begin(.+).* ]]; then
     echo ${list[$i]} > $VIMRC
