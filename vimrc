@@ -1,6 +1,7 @@
-"------------ vim-plug ------------------
+"---------------
+"   vim-plug
+"---------------
 call plug#begin('~/.vim/plugged')
-
 Plug 'tomasr/molokai'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -8,12 +9,13 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'jacoborus/tender.vim'
 Plug 'vim-scripts/gtags.vim'
 Plug 'lyuts/vim-rtags'
-
 call plug#end()
-"------------ vim-plug ------------------
 
+"-----------
+"   color
+"-----------
 "true color
-if exists('+termguicolors')
+if has('termguicolors')
   set termguicolors
   "let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
   "let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
@@ -27,7 +29,9 @@ hi CursorLine guibg=#1c2627
 hi Comment ctermfg=242
 hi Visual ctermbg=237
 
-"lightline setting
+"---------------
+"   lightline
+"---------------
 let g:lightline = {
       \ 'colorscheme': 'lightline_custom',
       \ 'inactive': {
@@ -43,28 +47,32 @@ let g:lightline = {
       \ },
       \ }
 
-"Leader setting
-let mapleader = "\<Space>"
-
-"nerdcommenter setting {{{
+"-------------------
+"   nerdcommenter
+"-------------------
 "Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 "Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-"}}}
 
-"easymotion setting
+"----------------
+"   easymotion
+"----------------
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
 map <Leader>f <Plug>(easymotion-s2)
 
-"setting for Fortran {{{
+"-------------
+"   fortran
+"-------------
 "free form by default
 let fortran_free_source=1
 "auto indent in do loop
 let fortran_do_enddo=1
-" }}}
 
+"-------------------
+"   options
+"-------------------
 "highlight the screen line of the cursor
 set cursorline
 
@@ -157,14 +165,14 @@ set ambiwidth=double
 "Allow virtual editing in Visual block mode.
 set virtualedit=block
 
-"read tags file
-set tags=./tags;
-
-"follow smartcase and ignorecase options when searching tags
-set tagcase=followscs
-
 "disable auto wrap and comment out
 autocmd VimEnter * set formatoptions=q
+
+"-----------------
+"   key mapping
+"-----------------
+"Leader setting
+let mapleader = "\<Space>"
 
 "run script with F5
 nnoremap <F5> :!./%<CR>
@@ -199,9 +207,24 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
 "quickfix keybind
-nnoremap <C-j> :cn<CR>
-nnoremap <C-k> :cp<CR>
-nnoremap <C-g><C-g> :cclose<CR>
+nnoremap <Leader>j :cn<CR>
+nnoremap <Leader>k :cp<CR>
+
+"location list keybind
+nnoremap <C-j> :lne<CR>
+nnoremap <C-k> :lp<CR>
+
+"close quickfix or location list
+nnoremap <C-g><C-g> :cclose<CR>:lclose<CR>
+
+"-----------
+"   ctags
+"-----------
+"read tags file
+set tags=./tags;
+
+"follow smartcase and ignorecase options when searching tags
+set tagcase=followscs
 
 "open tag in new tab page
 nnoremap <C-]> :tab tjump <C-r><C-w><CR>
@@ -211,16 +234,34 @@ nnoremap <Leader><C-]> :vs +tjump\ <C-r><C-w><CR>
 
 "show matchlist when there are several matching tags
 vnoremap <C-]> g<C-]>
-noremap <C-w><C-]> <C-w>g<C-]>
+nnoremap <C-w><C-]> <C-w>g<C-]>
 
-"key mappings for gtags
-nnoremap <C-g><C-f> :Gtags -f %<CR>
-nnoremap <C-g><C-d> :tabe +Gtags\ <C-r><C-w><CR> %
-nnoremap <C-g><C-r> :tabe +Gtags\ -r\ <C-r><C-w><CR> %
+"------------
+"   cscope
+"------------
+if has('cscope')
+  "autoload cscope.out
+  let cscope_file = findfile('cscope.out', '.;')
+  if filereadable(cscope_file)
+    set cscoperelative
+    execute 'cs add' cscope_file
+  endif
+  "keybind
+  set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-,a-
+  nnoremap <C-c><C-d> :tabe +lcs\ find\ g\ <C-r><C-w><CR>:lopen<CR><CR>
+  nnoremap <C-c><C-r> :tabe +lcs\ find\ c\ <C-r><C-w><CR>:lopen<CR><CR>
+endif
 
-"vim-rtags setting
+"-----------
+"   gtags
+"-----------
+nnoremap <C-g><C-d> :tabe +Gtags\ <C-r><C-w><CR>
+nnoremap <C-g><C-r> :tabe +Gtags\ -r\ <C-r><C-w><CR>
+
+"---------------
+"   vim-rtags
+"---------------
 let g:rtagsUseDefaultMappings = 0
-let g:rtagsUseLocationList = 0
 nnoremap <Leader>d :call rtags#JumpTo(g:NEW_TAB)<CR>
 nnoremap <Leader>r :call FindRefsNewTab()<CR>
 nnoremap <Leader>p :call rtags#JumpToParent()<CR>
