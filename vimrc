@@ -206,13 +206,26 @@ nnoremap <C-n> :tabn<CR>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
-"quickfix keybind
-nnoremap <Leader>j :cn<CR>
-nnoremap <Leader>k :cp<CR>
-
 "location list keybind
 nnoremap <C-j> :lne<CR>
 nnoremap <C-k> :lp<CR>
+let g:bindKeyForLocationList = 1
+
+"toggle keybind for quickfix
+function! ToggleKeyBind()
+  nunmap <C-j>
+  nunmap <C-k>
+  if g:bindKeyForLocationList == 1
+    nnoremap <C-j> :cn<CR>
+    nnoremap <C-k> :cp<CR>
+    let g:bindKeyForLocationList = 0
+  else
+    nnoremap <C-j> :lne<CR>
+    nnoremap <C-k> :lp<CR>
+    let g:bindKeyForLocationList = 1
+  endif
+endfunction
+nnoremap <Leader>m :call ToggleKeyBind()<CR>
 
 "close quickfix or location list
 nnoremap <C-g><C-g> :cclose<CR>:lclose<CR>
