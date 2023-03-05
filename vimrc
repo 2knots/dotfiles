@@ -30,6 +30,9 @@ hi CursorLine guibg=#1c2627
 hi Comment ctermfg=242
 hi Visual ctermbg=237
 
+"Leader setting
+let mapleader = "\<Space>"
+
 "---------------
 "   lightline
 "---------------
@@ -172,9 +175,6 @@ autocmd VimEnter * set formatoptions=q
 "-----------------
 "   key mapping
 "-----------------
-"Leader setting
-let mapleader = "\<Space>"
-
 "run script with F5
 nnoremap <F5> :!./%<CR>
 
