@@ -9,6 +9,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'jacoborus/tender.vim'
 Plug 'vim-scripts/gtags.vim'
 Plug 'lyuts/vim-rtags'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 "-----------
@@ -229,6 +230,11 @@ nnoremap <Leader>m :call ToggleKeyBind()<CR>
 
 "close quickfix or location list
 nnoremap <C-g><C-g> :cclose<CR>:lclose<CR>
+
+"--------------
+"   NERDTree
+"--------------
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 "-----------
 "   ctags
