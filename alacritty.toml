@@ -1,0 +1,58 @@
+[window]
+dimensions = { columns = 140, lines = 35 }
+opacity = 0.85
+padding = { x = 3, y = 3 }
+
+[font]
+normal = { family = "HackGen", style = "Regular" }
+size = 15
+bold = { style = "Regular" }
+offset = { x = 0, y = 2 }
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "Always" }
+blink_timeout = 0
+thickness = 0.1
+
+[terminal]
+shell = { program = "wsl", args = ["~"] }
+
+[mouse]
+hide_when_typing = true
+bindings = [ { mouse = "Right", action = "Paste" } ]
+
+[colors]
+transparent_background_colors = true
+
+# Colors (Dracula+)
+# c.f. https://github.com/alacritty/alacritty-theme
+[colors.primary]
+background = "#212121"
+foreground = "#F8F8F2"
+
+[colors.cursor]
+text = "#0E1415"
+cursor = "#ECEFF4"
+
+[colors.normal]
+black = "#21222C"
+red = "#FF5555"
+green = "#50FA7B"
+yellow = "#FFCB6B"
+blue = "#82AAFF"
+magenta = "#C792EA"
+cyan = "#8BE9FD"
+white = "#F8F9F2"
+
+[colors.bright]
+black = "#545454"
+red = "#FF6E6E"
+green = "#69FF94"
+yellow = "#FFCB6B"
+blue = "#D6ACFF"
+magenta = "#FF92DF"
+cyan = "#A4FFFF"
+white = "#F8F8F2"
