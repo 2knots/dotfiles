@@ -15,4 +15,4 @@ FontRender=textout
 CursorType=block
 Scrollbar=None
 Transparency=medium
-ThemeFile=molokai-custom.minttyrc
+ThemeFile=dracula_custom.minttyrc
