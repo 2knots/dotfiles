@@ -7,9 +7,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'jacoborus/tender.vim'
-Plug 'vim-scripts/gtags.vim'
-Plug 'lyuts/vim-rtags'
 Plug 'preservim/nerdtree'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 "-----------
@@ -208,9 +208,14 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
 "location list keybind
-nnoremap <C-j> :lne<CR>
-nnoremap <C-k> :lp<CR>
-let g:bindKeyForLocationList = 1
+"nnoremap <C-j> :lne<CR>
+"nnoremap <C-k> :lp<CR>
+"let g:bindKeyForLocationList = 1
+"quickfix keybind
+nnoremap <C-j> :cn<CR>
+nnoremap <C-k> :cp<CR>
+let g:bindKeyForLocationList = 0
+
 
 "toggle keybind for quickfix
 function! ToggleKeyBind()
@@ -271,21 +276,26 @@ if has('cscope')
   nnoremap <C-c><C-r> :tabe +lcs\ find\ c\ <C-r><C-w><CR>:lopen<CR><CR>
 endif
 
-"-----------
-"   gtags
-"-----------
-nnoremap <C-g><C-d> :tabe +Gtags\ <C-r><C-w><CR>
-nnoremap <C-g><C-r> :tabe +Gtags\ -r\ <C-r><C-w><CR>
+"---------
+"   LSP
+"---------
+let g:lsp_diagnostics_enabled = 0
 
-"---------------
-"   vim-rtags
-"---------------
-let g:rtagsUseDefaultMappings = 0
-nnoremap <Leader>d :call rtags#JumpTo(g:NEW_TAB)<CR>
-nnoremap <Leader>r :call FindRefsNewTab()<CR>
-nnoremap <Leader>p :call rtags#JumpToParent()<CR>
-function! FindRefsNewTab()
-  let pos = getcurpos()
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+  nnoremap <Leader>d :tab LspDefinition<CR>
+  nnoremap <Leader>r :tab split<CR>:LspReferences<CR>
+  nnoremap <Leader>t :tab LspTypeDefinition<CR>
+  nnoremap <Leader>h <plug>(lsp-hover)
+endfunction
+
+augroup lsp_install
+  au!
+  " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
   call remove(pos, 0)
   tabe +call\ cursor(pos) %
   call rtags#FindRefs()
