@@ -20,6 +20,24 @@ if has('termguicolors')
   set termguicolors
   "let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
   "let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+  let g:terminal_ansi_colors = [
+        \ '#21222c',
+        \ '#ff5555',
+        \ '#50fa7b',
+        \ '#ffcb6b',
+        \ '#82aaff',
+        \ '#c792ea',
+        \ '#88e9fd',
+        \ '#f8f9f2',
+        \ '#545454',
+        \ '#ff6e6e',
+        \ '#50fa7b',
+        \ '#ffcb6b',
+        \ '#82aaff',
+        \ '#ff92df',
+        \ '#a4ffff',
+        \ '#f8f8f2',
+        \ ]   
 endif
 
 "colorscheme
