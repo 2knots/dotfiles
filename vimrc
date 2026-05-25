@@ -190,6 +190,13 @@ set virtualedit=block
 "disable auto wrap and comment out
 autocmd VimEnter * set formatoptions=q
 
+"auto reload files
+set autoread
+augroup AutoRead
+  autocmd!
+  autocmd FocusGained,BufEnter * checktime
+augroup END
+
 "-----------------
 "   key mapping
 "-----------------
